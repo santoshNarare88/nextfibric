@@ -3,25 +3,84 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --backColor: #00062E;
+  --whiteColor: #FFFFFF;
+  --blueColor: #00A7E1;
+  --grayOne: #F5F7F8;
+  --grayTwo: #CCDBE0;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--backColor);
+  margin: 0;
+  padding: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 244px 1fr; /* Sidebar takes 250px, main content takes the rest */
+  grid-template-rows: 60px 1fr; /* Header takes 60px, the rest is main content */
+  grid-template-areas:
+    "header header"
+    "sidebar main-content";
+  height: 100vh; /* Adjust this to fit your needs */
+}
+
+.header {
+  grid-area: header;
+  background-color: var(--whiteColor);
+  padding: 0px 10px;
+  border: solid 1px var(--grayTwo);
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--whiteColor);
+  padding: 10px;
+  border: solid 1px var(--grayTwo);
+}
+
+.main-content {
+  grid-area: main-content;
+  background-color: var(--grayOne);
+  padding: 15px;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; 
+    grid-template-rows: 60px 1fr auto; 
+    grid-template-areas:
+      "header"
+      "main-content"
+      "sidebar";
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+button {
+  background-color: var(--blueColor);
+  color: var(--whiteColor);
+  padding: 8px 14px;
+  font-weight: 600;
+}
+
+.templateGrid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+}
+
+.templateGrid .fields .title {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.templateGrid .fields select {
+  background-color: var(--grayOne);
+  padding: 5px;
+  font-size: 18px;
+  border: 1px solid var(--backColor);
 }
