@@ -1,18 +1,27 @@
-'use client'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 import Image from "next/image";
-import Mover from "../../../public/images/mover.svg";
+import Mover from "../../public/images/mover.svg";
 import { fabric } from "fabric";
 
-export default function Home() {
+const Home = () => {
   const canvasRef = useRef(null);
   const fabricCanvasRef = useRef<any>(null);
   const filed = ["title", "subTitle", "actors", "reviews"];
 
   useEffect(() => {
     fabricCanvasRef.current = new fabric.Canvas(canvasRef?.current);
+    const rect = new fabric.Rect({
+      top: 100,
+      left: 100,
+      width: 60,
+      height: 70,
+      fill: "red",
+    });
+    const rect1 = new fabric.Text("heelskdhskjd");
+    fabricCanvasRef.current.add(rect);
+    fabricCanvasRef.current.add(rect1);
   }, []);
-  
+
   return (
     <div className="">
       <div className="flex justify-between items-center">
@@ -26,7 +35,7 @@ export default function Home() {
         <div>
           {filed?.map((item, i) => {
             return (
-              <div key={item+i} className="fields my-2">
+              <div key={item + i} className="fields my-2">
                 <p className="title">{item}</p>
                 <div className="flex justify-between items-center">
                   <div className="flex flex-col">
@@ -75,13 +84,12 @@ export default function Home() {
             );
           })}
         </div>
-        <div className='p-2'>
-          <canvas
-            ref={canvasRef}
-            className='w-full h-full'
-          />
+        <div className="p-2">
+          <canvas ref={canvasRef} className="w-full h-full" />
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Home;
